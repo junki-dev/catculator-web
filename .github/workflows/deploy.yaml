@@ -46,3 +46,6 @@ jobs:
       # Deploy application to S3
       - name: Deploy to S3
         run: aws s3 sync build/ s3://${{ secrets.AWS_S3_DEPLOY_BUCKET }} --delete
+
+      - name: Invalidate CloudFront Cache
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CDN_DISTRIBUTION_ID }} --paths "/*"
