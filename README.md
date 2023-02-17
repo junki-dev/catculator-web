@@ -12,6 +12,12 @@ Backend Repository: https://github.com/junki-dev/catculator-server
 
 </br>
 
+## Infra Structure
+
+<img width="100%" src="https://user-images.githubusercontent.com/66932794/219527480-0ce9b9b1-0d9f-40b1-96ae-63795ef70299.png"/>
+
+<br/>
+
 ## Prerequisite
 
 ![React](https://img.shields.io/badge/react-18.2.0-61DAFB?logo=React)
