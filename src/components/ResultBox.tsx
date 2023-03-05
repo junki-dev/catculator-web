@@ -7,11 +7,12 @@ interface ResultBoxProps {
 export default function ResultBox({ amount }: ResultBoxProps) {
   return (
     <Box
+      component={'div'}
       sx={{
         display: 'flex',
         justifyContent: 'center',
         height: '5rem',
-        width: '25%',
+        width: '50%',
         minWidth: '17rem',
         backgroundColor: '#B4AA99',
         borderRadius: 1,

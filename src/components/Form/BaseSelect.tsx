@@ -30,6 +30,7 @@ export default function BaseSelect<T extends FieldValues>({
 }: BaseSelectProps<T>) {
   return (
     <Box
+      component={'div'}
       sx={{
         display: 'flex',
         justifyContent: 'center',

@@ -1,4 +1,3 @@
-import HorizontalDivider from '../components/HorizontalDivider';
 import TypographyBody from '../components/Typography/TypographyBody';
 
 import FileCopyIcon from '@mui/icons-material/FileCopy';
@@ -8,13 +7,14 @@ import Box from '@mui/material/Box';
 export default function Footer() {
   return (
     <Box
+      component={'div'}
       sx={{
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        height: '10%',
       }}
     >
-      <HorizontalDivider />
       <TypographyBody icon={<GitHubIcon />} label="GitHub" uri="https://github.com/junki-dev" />
       <TypographyBody
         icon={<FileCopyIcon />}
