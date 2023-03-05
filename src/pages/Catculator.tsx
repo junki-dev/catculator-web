@@ -179,6 +179,7 @@ export default function Catculator() {
 
   return (
     <Box
+      component={'div'}
       sx={{
         marginTop: 8,
         display: 'flex',
@@ -240,7 +241,7 @@ export default function Catculator() {
         </LoadingButton>
       </form>
 
-      <Box sx={{ width: '25%', minWidth: '17rem', backgroundColor: '#F3EADA' }}>
+      <Box component={'div'} sx={{ width: '25%', minWidth: '17rem', backgroundColor: '#F3EADA' }}>
         <Grid2 container spacing={2}>
           <Grid2 xs={6}>
             <BaseButton
@@ -256,7 +257,7 @@ export default function Catculator() {
         </Grid2>
       </Box>
 
-      <Box sx={{ mt: 1, width: '27%', minWidth: '17rem' }}>
+      <Box component={'div'} sx={{ mt: 1, width: '27%', minWidth: '17rem' }}>
         <List>
           <TransitionGroup>
             {moreInfos.map((info) => (
