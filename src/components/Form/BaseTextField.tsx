@@ -25,6 +25,7 @@ export default function BaseTextField<T extends FieldValues>({
 }: BaseTextFieldProps<T>) {
   return (
     <Box
+      component={'div'}
       sx={{
         display: 'flex',
         flexDirection: 'column',
