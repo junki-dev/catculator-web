@@ -1,4 +1,3 @@
-
 import Router from './routes';
 import GlobalStyle from './styles/global';
 import { theme } from './styles/teme';

@@ -12,7 +12,7 @@ export default function ResultBox({ amount }: ResultBoxProps) {
         display: 'flex',
         justifyContent: 'center',
         height: '5rem',
-        width: '25%',
+        width: '50%',
         minWidth: '17rem',
         backgroundColor: '#B4AA99',
         borderRadius: 1,

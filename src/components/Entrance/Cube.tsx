@@ -5,7 +5,9 @@ import { Mesh } from 'three';
 
 export default function Cube() {
   const textRef = useRef<Mesh>(null!);
+
   useFrame((state) => (textRef.current.position.x = Math.sin(state.clock.elapsedTime) * 2));
+
   return (
     <mesh>
       <boxGeometry />
