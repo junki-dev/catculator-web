@@ -2,6 +2,7 @@
 import Footer from './Footer';
 
 import { css } from '@emotion/react';
+import { Box } from '@mui/material';
 import { Outlet } from 'react-router-dom';
 
 interface LayoutDefaultProps {
@@ -10,9 +11,11 @@ interface LayoutDefaultProps {
 
 export default function Layout({ children }: LayoutDefaultProps) {
   return (
-    <div>
-      <main css={css({ backgroundColor: '#ffffff' })}>{children || <Outlet />}</main>
+    <Box component={'div'}>
+      <main css={css({ backgroundColor: '#ffffff', minHeight: '90vh', height: '90%', width: '100%' })}>
+        {children || <Outlet />}
+      </main>
       <Footer />
-    </div>
+    </Box>
   );
 }

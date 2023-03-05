@@ -1,9 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { getFeedAmount } from '../api/calculator';
 import BaseButton from '../components/BaseButton';
+import EmptyBox from '../components/EmptyBox';
 import BaseDatePicker from '../components/Form/BaseDatePicker';
 import BaseSelect, { IMenuItem } from '../components/Form/BaseSelect';
 import BaseTextField from '../components/Form/BaseTextField';
+import Manual from '../components/Manual';
 import ResultBox from '../components/ResultBox';
 import { useFeedList } from '../hooks/query/feed';
 import { getLivedMonth } from '../utils';
@@ -17,6 +19,7 @@ import { Big } from 'big.js';
 import dayjs from 'dayjs';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { TransitionGroup } from 'react-transition-group';
 import * as yup from 'yup';
 interface IFormInputs {
@@ -54,6 +57,9 @@ const energyList: IMenuItem[] = [
 ];
 
 export default function Catculator() {
+  // useNavigate
+  const navigate = useNavigate();
+
   // useState
   const [amount, setAmount] = useState<number>();
 
@@ -178,94 +184,107 @@ export default function Catculator() {
   }, [isValid]);
 
   return (
-    <Box
-      component={'div'}
-      sx={{
-        marginTop: 8,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}
-    >
-      <CssBaseline />
-      <Avatar sx={{ m: 1, bgcolor: 'warning.main' }}>
-        <CalculateRoundedIcon />
-      </Avatar>
-      <Typography css={css({ fontWeight: 'bold', marginBottom: '1.5rem' })} color="primary" component="h1" variant="h5">
-        CATCULATOR
-      </Typography>
-
-      <ResultBox amount={amount ? amount : 0} />
-
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        css={css({
-          marginTop: '1rem',
-          width: '25%',
-          minWidth: '17rem',
-          backgroundColor: '#FFF9EC',
-        })}
+    <Box component={'div'} sx={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'center' }}>
+      <EmptyBox flexBasis={'25%'} />
+      <Box
+        component={'div'}
+        sx={{
+          flexBasis: '50%',
+          paddingTop: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
       >
-        <BaseTextField
-          control={control}
-          name="weight"
-          label="몸무게(kg)"
-          id="weight"
-          isFocus={true}
-          isRequired={true}
-          errors={errors.weight}
-        />
-        <BaseDatePicker control={control} name="birthday" label="생일" />
-        <BaseSelect
-          control={control}
-          name="energyReq"
-          label="에너지 요구량"
-          id="energyReq"
-          items={energyList}
-          isRequired={true}
-          errors={errors.energyReq}
-        />
+        <CssBaseline />
+        <Avatar sx={{ m: 1, bgcolor: 'warning.main' }}>
+          <CalculateRoundedIcon />
+        </Avatar>
+        <Typography css={css({ fontWeight: 'bold', marginBottom: '1.5rem' })} color="primary" variant="h5">
+          CATCULATOR
+        </Typography>
 
-        <BaseTextField control={control} name="kcal" label="사료 칼로리(kcal/kg)" id="kcal" errors={errors?.kcal} />
-        <BaseSelect control={control} name="feed" label="사료" id="feed" items={feedList} errors={errors.feed} />
+        <ResultBox amount={amount ? amount : 0} />
 
-        <LoadingButton
-          type="submit"
-          fullWidth
-          variant="contained"
-          sx={{ mt: 3, color: '#ffffff', fontWeight: 'bold', fontSize: '1.1rem' }}
-          loading={isLoading}
-          disabled={!isValid}
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          css={css({
+            marginTop: '1rem',
+            width: '50%',
+            minWidth: '17rem',
+            backgroundColor: '#FFF9EC',
+          })}
         >
-          계산하기
-        </LoadingButton>
-      </form>
+          <BaseTextField
+            control={control}
+            name="weight"
+            label="몸무게(kg)"
+            id="weight"
+            isFocus={true}
+            isRequired={true}
+            errors={errors.weight}
+          />
+          <BaseDatePicker control={control} name="birthday" label="생일" />
+          <BaseSelect
+            control={control}
+            name="energyReq"
+            label="에너지 요구량"
+            id="energyReq"
+            items={energyList}
+            isRequired={true}
+            errors={errors.energyReq}
+          />
 
-      <Box component={'div'} sx={{ width: '25%', minWidth: '17rem', backgroundColor: '#F3EADA' }}>
-        <Grid2 container spacing={2}>
-          <Grid2 xs={6}>
-            <BaseButton
-              label="More Info"
-              color="#007664"
-              disabled={amount ? false : true}
-              onClick={handleDisplayInfos}
-            />
-          </Grid2>
-          <Grid2 xs={6}>
-            <BaseButton label="Reset" color="#FF8C5B" onClick={resetForm} />
-          </Grid2>
-        </Grid2>
-      </Box>
+          <BaseTextField control={control} name="kcal" label="사료 칼로리(kcal/kg)" id="kcal" errors={errors?.kcal} />
+          <BaseSelect control={control} name="feed" label="사료" id="feed" items={feedList} errors={errors.feed} />
 
-      <Box component={'div'} sx={{ mt: 1, width: '27%', minWidth: '17rem' }}>
-        <List>
-          <TransitionGroup>
-            {moreInfos.map((info) => (
-              <Collapse key={info.label}>{renderItem(info)}</Collapse>
-            ))}
-          </TransitionGroup>
-        </List>
+          <LoadingButton
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, color: '#ffffff', fontWeight: 'bold', fontSize: '1.1rem' }}
+            loading={isLoading}
+            disabled={!isValid}
+          >
+            계산하기
+          </LoadingButton>
+        </form>
+
+        <Box component={'div'} sx={{ width: '50%', minWidth: '17rem', backgroundColor: '#F3EADA' }}>
+          <Grid2 container spacing={2}>
+            <Grid2 xs={6}>
+              <BaseButton
+                label="More Info"
+                color="#007664"
+                disabled={amount ? false : true}
+                onClick={handleDisplayInfos}
+              />
+            </Grid2>
+            <Grid2 xs={6}>
+              <BaseButton label="Reset" color="#FF8C5B" onClick={resetForm} />
+            </Grid2>
+          </Grid2>
+
+          <BaseButton
+            label="HOME"
+            color="#852500"
+            backgroundColor="#A2AF9F"
+            hoveredColor="#FF8C5B"
+            onClick={() => navigate('/')}
+          />
+        </Box>
+
+        <Box component={'div'} sx={{ mt: 1, width: '50%', minWidth: '17rem' }}>
+          <List>
+            <TransitionGroup>
+              {moreInfos.map((info) => (
+                <Collapse key={info.label}>{renderItem(info)}</Collapse>
+              ))}
+            </TransitionGroup>
+          </List>
+        </Box>
       </Box>
+      <Manual flexBasis={'25%'} />
     </Box>
   );
 }
