@@ -21,7 +21,7 @@
     "no-empty-function": "off",
     "@typescript-eslint/no-empty-function": "off",
     "react/react-in-jsx-scope": "off",
-    "react/no-unknown-property": ["error", { "ignore": ["css"] }],
+    "react/no-unknown-property": "off",
     "unused-imports/no-unused-imports": "error",
     "unused-imports/no-unused-vars": [
       "warn",

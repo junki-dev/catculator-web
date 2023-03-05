@@ -14,6 +14,7 @@ interface BaseDatePickerProps<T extends FieldValues> {
 export default function BaseDatePicker<T extends FieldValues>({ control, name, label }: BaseDatePickerProps<T>) {
   return (
     <Box
+      component={'div'}
       sx={{
         display: 'flex',
         justifyContent: 'center',

@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 export default function Footer() {
   return (
     <Box
+      component={'div'}
       sx={{
         display: 'flex',
         flexDirection: 'column',
