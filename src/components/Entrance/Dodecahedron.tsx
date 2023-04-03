@@ -6,7 +6,13 @@ import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Mesh } from 'three';
 
-export default function Dodecahedron(props: any) {
+interface DodecahedronProps {
+  to: string;
+  position: [number, number, number];
+  scale: number;
+}
+
+export default function Dodecahedron({ to, position, scale }: DodecahedronProps) {
   const navigate = useNavigate();
 
   const meshRef = useRef<Mesh>(null!);
@@ -15,7 +21,7 @@ export default function Dodecahedron(props: any) {
   useFrame(() => (meshRef.current.rotation.x += 0.01));
 
   return (
-    <group {...props}>
+    <group position={position} scale={scale}>
       <mesh
         css={css({
           '&:hover': {
@@ -23,7 +29,7 @@ export default function Dodecahedron(props: any) {
           },
         })}
         ref={meshRef}
-        onClick={() => navigate('/catculator')}
+        onClick={() => navigate(to)}
         onPointerOver={() => hover(true)}
         onPointerOut={() => hover(false)}
       >

@@ -12,7 +12,8 @@ export default function Entrance() {
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} />
         <Cube />
-        <Dodecahedron position={[0, 1, 0]} scale={0.2} />
+        <Dodecahedron to={'/catculator'} position={[0, 1, 0]} scale={0.2} />
+        <Dodecahedron to={'/guide'} position={[0, 1, 0.5]} scale={0.15} />
         <ContactShadows frames={1} position={[0, -0.5, 0]} blur={1} opacity={0.75} />
         <ContactShadows frames={1} position={[0, -0.5, 0]} blur={3} color="orange" />
         <OrbitControls minPolarAngle={0} maxPolarAngle={Math.PI / 2.1} />
